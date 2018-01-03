@@ -1,6 +1,6 @@
 # coding:utf-8
 import itchat
-from echarts import Echart, Legend, Pie
+#from echarts import Echart, Legend, Pie
 
 # 热登录，不必每次扫码
 itchat.auto_login(hotReload=True)
@@ -26,7 +26,7 @@ for i in friends[1:]:
 total = len(friends[1:])
 total_g=len(groups[0:])
 
-好了，打印结果
+#好了，打印结果
 print(u'好友数：%d' % total )
 print(u'群数目：%d' % total_g )
 print(u"男性好友：%.2f%%" % (float(male) / total * 100))
