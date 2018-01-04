@@ -10,7 +10,7 @@
 
 - 登录异常时候删除一下当前文件夹下的*itchat.pkl*
 
-  保持热登录状态，初次登录后会把登录的一些信息保存在同目录下的itchat.pkl文件中，即使这次程序运行结束，下次在同目录下再次调用这个方法的时候可以不用再扫二维码登录了。根据网页版微信的登录机制，这种保持是有时限的，隔一段时间后就要重新登录。​
+  保持热登录状态，初次登录后会把登录的一些信息保存在同目录下的itchat.pkl文件中，即使这次程序运行结束，下次在同目录下再次调用这个方法的时候可以不用再扫二维码登录了。根据网页版微信的登录机制，这种保持是有时限的，隔一段时间后就要重新登录。
 
 - 注意事项（通过输出到excel解决）：
 > 这里的输出都是单行输出，比如:
@@ -25,5 +25,58 @@ print(ChatRoom['MemberList'][i]['DisplayName'], ChatRoom['MemberList'][i]["NickN
 > 会有如下错误：
 ```
 (u'\u673a\u5668\u4eba\u5c0f\u52a9\u624b', u'\u541b\u5b50\u5766\u8361\u83614151', u'')
+```
+
+- 各字段含义
+
+```
+{
+    "Uin": 0,
+**  "UserName": 用户名称，一个"@"为好友，两个"@"为群组
+**  "NickName": 昵称
+    "HeadImgUrl":头像图片链接地址
+    "ContactFlag": 1-好友，2-群组，3-公众号
+    "MemberCount": 成员数量，只有在群组信息中才有效,
+    "MemberList": 成员列表,
+**  "RemarkName": 备注名称
+    "HideInputBarFlag": 0,
+**  "Sex": 性别，0-未设置（公众号、保密），1-男，2-女
+    "Signature": 公众号的功能介绍 or 好友的个性签名
+    "VerifyFlag": 0,
+    "OwnerUin": 0,
+    "PYInitial": 用户名拼音缩写
+    "PYQuanPin": 用户名拼音全拼
+    "RemarkPYInitial":备注拼音缩写
+    "RemarkPYQuanPin": 备注拼音全拼
+    "StarFriend": 是否为星标朋友  0-否  1-是
+    "AppAccountFlag": 0,
+    "Statues": 0,
+    "AttrStatus": 119911,
+    "Province": 省
+    "City": 市
+    "Alias": 
+    "SnsFlag": 17
+    "UniFriend": 0,
+**  "DisplayName": "",群备注
+    "ChatRoomId": 0,
+    "KeyWord": 
+    "EncryChatRoomId": ""
+}
+{
+    "UserName": "xxx", # ID，这里的是昵称
+    "Province": "xxx",  
+    "City": "xxx",   
+    "Scene": 17,
+    "QQNum": 0,
+    "Content": "",
+    "Alias": "xxx", # 微信号
+    "OpCode": 0,
+    "Signature": "",
+    "Ticket": "",
+    "Sex": 0, # 1:男, 2:女
+    "NickName": "xxx", # 昵称
+    "AttrStatus": 4293221,
+    "VerifyFlag": 0
+}
 ```
 
