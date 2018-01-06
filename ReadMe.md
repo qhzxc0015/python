@@ -80,3 +80,46 @@ print(ChatRoom['MemberList'][i]['DisplayName'], ChatRoom['MemberList'][i]["NickN
 }
 ```
 
+- 待用研究
+
+1. 向所有的好友发送不同的祝福消息
+```
+#coding=utf8
+import itchat, time
+
+itchat.auto_login(True)
+
+SINCERE_WISH = u'祝%s新年快乐！'
+
+friendList = itchat.get_friends(update=True)[1:]
+for friend in friendList:
+    # 如果是发送目的，把下面的方法改为itchat.send即可
+    print(SINCERE_WISH % (friend['DisplayName']or friend['NickName']), friend['UserName'])
+    time.sleep(.5)
+```
+2. 向指定群聊的所有人发送消息
+```
+#coding=utf8
+  import itchat,time
+
+itchat.auto_login(True)
+
+REAL_SINCERE_WISH=u'%s新年快乐!!'
+
+chatroomName=u'亲朋友群'
+itchat.get_chatrooms(update=True)
+chatrooms=itchat.search_chatrooms(name=chatroomName)
+if chatrooms is None:
+    print(u'没有找到群聊:'+chatroomName)
+else:
+    chatroom=itchat.update_chatroom(chatrooms[0]['UserName'])
+    for friend in chatroom['MemberList']:
+        friend=itchat.search_friends(userName=friend['UserName'])
+    
+        #如果是真正发送，把下面的方法改为　itchat.send(REAL_SINCERE_WISH%(friend['DisplayName']or friend['NickName']),friend['UserName'])
+    
+        print(REAL_SINCERE_WISH%(friend['NickName'] or friend['DisplayName']))
+        time.sleep(.5)
+```
+
+3. [基于itchat实现微信群消息同步机器人](https://www.jianshu.com/p/7aeadca0c9bd)
