@@ -81,8 +81,10 @@ if __name__=="__main__":
     flag = input("是否继续读取（1继续，0停止）: ")
     while int(flag) > 0:
         num = input("请输入要读取的群编号(不要重复输入): ")
-        name1 = groups[num - 1]["NickName"]
-        begin(wb, name1)
+        name = groups[num - 1]["NickName"]
+        ChatRoom = itchat.update_chatroom(getroom_message(), detailedMember=True)
+        total = len(ChatRoom['MemberList'])
+        begin(wb, name)
         flag = input("是否继续读取（1继续，0停止）: ")
     # 保存excel时间路径与名称
     time = time.strftime('%Y%m%d', time.localtime(time.time()))
