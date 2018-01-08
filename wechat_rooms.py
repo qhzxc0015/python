@@ -1,16 +1,22 @@
 # coding:utf-8
 import itchat
 import xlwt
+import time
 
 # 热登录，不必每次扫码
 itchat.auto_login(hotReload=True)
-print ("已登录")
+print ("微信已登录")
 groups = itchat.get_chatrooms(update=True)[0:]
 total_g=len(groups)
+print "-----------"
+print "群列表如下（请将要读取的群保存到通讯录）："
 for i in range(total_g):
-    print(groups[i]["NickName"])
+    print(u"群编号"+str(i+1)+": "+groups[i]["NickName"])
 # 固定群名称！！！不同群需要修改一！！！
-name = u'京东2018校招宝宝（非北京）'
+print "-----------"
+num = input("请输入要读取的群编号: ")
+name = groups[num-1]["NickName"]
+#name = u'京东2018届宝宝（北京②群）'
 #name = u'京东金融2018校招宝宝群'
 #name = u'DBA+北京3号群'
 #获取群信息
@@ -27,7 +33,7 @@ if __name__=="__main__":
     total = len(ChatRoom['MemberList'])
     wb = xlwt.Workbook()
     #！！！不同群需要修改二！！！
-    ws = wb.add_sheet(u'JD_4')
+    ws = wb.add_sheet(name,cell_overwrite_ok=False)
 
     #第一行信息
     ws.write(0, 0, u"昵称")
@@ -36,7 +42,8 @@ if __name__=="__main__":
     ws.write(0, 3, u"省份")
     ws.write(0, 4, u"城市")
     ws.write(0, 5, u"个人标签")
-    ws.write(0, 6, u"总人数:%d" % total)
+    ws.write(0, 6, u"所属群组")
+    ws.write(0, 7, u"总人数:%d" % total)
     #求男女比例
     male = female = other = 0
     for i in range(total):
@@ -46,9 +53,9 @@ if __name__=="__main__":
             female += 1
         else:
             other += 1
-    ws.write(1, 6, u"男性比例：%.2f%%" % (float(male) / total * 100))
-    ws.write(2, 6, u"女性比例：%.2f%%" % (float(female) / total * 100))
-    ws.write(3, 6, u"其他比例：%.2f%%" % (float(other) / total * 100))
+    ws.write(1, 7, u"男性比例：%.2f%%" % (float(male) / total * 100))
+    ws.write(2, 7, u"女性比例：%.2f%%" % (float(female) / total * 100))
+    ws.write(3, 7, u"其他比例：%.2f%%" % (float(other) / total * 100))
     #各种信息存入excel
     for i in range(total):
         #1昵称
@@ -68,8 +75,13 @@ if __name__=="__main__":
         ws.write(i+1, 4, ChatRoom['MemberList'][i]['City'])
         #6个性标签
         ws.write(i+1, 5, ChatRoom['MemberList'][i]['Signature'])
+        #所属群组
+        ws.write(i+1, 6, name)
 #        ws.write(i+1, 6, ChatRoom['MemberList'][i]['OwnerUin'])#RemarkName是对群内好友的个人备注，可以看到群内好友
 #        ws.write(i, 4, ChatRoom['MemberList'][i]['UserName'])
     #保存excel名称！！！不同群需要修改三！！！
-    wb.save('G:\github\python\excels\JD_2018_members4.xls')
-    print ("ok")
+    time =time.strftime('%Y%m%d',time.localtime(time.time()))
+    str2 = 'G:\github\python\excels'+'\\'+time+name+".xls"
+    wb.save(str2)
+    print "-----------"
+    print (name+u",群成员信息读取成功,保存路径："+str2)
