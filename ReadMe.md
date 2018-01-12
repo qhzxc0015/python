@@ -80,6 +80,16 @@ print(ChatRoom['MemberList'][i]['DisplayName'], ChatRoom['MemberList'][i]["NickN
 }
 ```
 
+- 图灵机器人
+
+`pip install wxpy `
+
+`pip install itchat pillow`
+
+`pip install pillow`
+
+`pip install numpy`
+
 - 待用研究
 
 1. 向所有的好友发送不同的祝福消息
