@@ -1,8 +1,11 @@
 - 基于itchat对微信进行信息采集及其自动化控制
 
-  wechat_rooms为微信群成员信息获取
-
+  wechat_rooms_details为微信群成员信息获取
   wechat_friends为个人好友信息获取
+  wechat_msg为回复信息查看
+  Robot_Ice 消息转发至小冰，小冰回复再转发回来
+  Robot_TL 图灵机器人
+  Robot_room_to_room 自动将群消息统一转发至其他
 
 - 需要插件itchat
   win在cmd下：`pip install itchat`
