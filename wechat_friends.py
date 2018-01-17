@@ -27,17 +27,19 @@ total = len(friends[1:])
 total_g=len(groups[0:])
 
 #好了，打印结果
-print(u'好友数：%d' % total )
-print(u'群数目：%d' % total_g )
-print(u"男性好友：%.2f%%" % (float(male) / total * 100))
-print(u"女性好友：%.2f%%" % (float(female) / total * 100))
-print(u"未填性别：%.2f%%" % (float(other) / total * 100))
-#输出所有好友昵称
+def to_print():
+    print(u'好友数：%d' % total )
+    print(u'群数目：%d' % total_g )
+    print(u"男性好友：%.2f%%" % (float(male) / total * 100))
+    print(u"女性好友：%.2f%%" % (float(female) / total * 100))
+    print(u"未填性别：%.2f%%" % (float(other) / total * 100))
+to_print()
+    #输出所有好友昵称
 for i in range(total):
-    print(friends[i]["NickName"])
+    print(str(i+1)+": "+friends[i]["NickName"])
 #输出所有群昵称
-for i in range(total_g):
-    print(groups[i]["NickName"])
+#for i in range(total_g):
+#    print(groups[i]["NickName"])
 	
 # echarts
 #print(u"男性好友：%.2f%%" % (float(male) / total * 100))
