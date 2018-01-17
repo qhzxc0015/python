@@ -6,6 +6,7 @@
   Robot_Ice 消息转发至小冰，小冰回复再转发回来
   Robot_TL 图灵机器人
   Robot_room_to_room 自动将群消息统一转发至其他
+  wechat_images 拼接好友头像，以255好友为一张图
 
 - 需要插件itchat
   win在cmd下：`pip install itchat`
