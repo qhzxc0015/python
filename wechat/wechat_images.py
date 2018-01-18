@@ -25,12 +25,12 @@ for i in friends:
 	num += 1
 pics = listdir(user)
 numPic = len(pics)
-print(numPic)
-eachsize = int(math.sqrt(float(640 * 640) / numPic))
-print(eachsize)
-numline = int(640 / eachsize)
-toImage = Image.new('RGBA', (640, 640))
-print(numline)
+print(u"总人数："+str(numPic))
+eachsize = int(math.sqrt(float(1280 * 1280) / numPic))
+print(u"容纳照片："+str(eachsize))
+numline = int(1280 / eachsize)
+toImage = Image.new('RGBA', (1280, 1280))
+print(u"每行数照片数："+str(numline))
 x = 0
 y = 0
 for i in pics:

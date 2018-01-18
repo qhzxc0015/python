@@ -14,6 +14,7 @@ def send_xiaoice(msg):
     itchat.send('@%s@%s' % ({'Picture': 'img', 'Video': 'vid'}.get(msg['Type'], 'fil'), msg['FileName']), xiaoice)
 
 
+
 @itchat.msg_register([PICTURE, RECORDING, ATTACHMENT, VIDEO], False, False, True)
 # get img and send to Sender 将小冰回复的图片等信息转发给发送者
 def send_xiaoice(msg):
