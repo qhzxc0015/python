@@ -67,12 +67,12 @@ def getroom_message():
 if __name__=="__main__":
     groups = itchat.get_chatrooms(update=True)[0:]
     total_g=len(groups)
-    print "-----------"
-    print "群列表如下（请将要读取的群保存到通讯录）："
+    print ("-----------")
+    print ("群列表如下（请将要读取的群保存到通讯录）：")
     for i in range(total_g):
         print(u"群编号"+str(i+1)+": "+groups[i]["NickName"])
-    print "-----------"
-    num = input("请输入要读取的群编号: ")
+    print ("-----------")
+    num = int(input("请输入要读取的群编号: "))
     name = groups[num-1]["NickName"]
     ChatRoom = itchat.update_chatroom(getroom_message(), detailedMember=True)
     total = len(ChatRoom['MemberList'])
@@ -80,7 +80,8 @@ if __name__=="__main__":
     begin(wb,name)
     flag = input("是否继续读取（1继续，0停止）: ")
     while int(flag) > 0:
-        num = input("请输入要读取的群编号(不要重复输入): ")
+        num = int(input("请输入要读取的群编号(不要重复输入): "))
+
         name = groups[num - 1]["NickName"]
         ChatRoom = itchat.update_chatroom(getroom_message(), detailedMember=True)
         total = len(ChatRoom['MemberList'])
@@ -89,7 +90,7 @@ if __name__=="__main__":
     # 保存excel时间路径与名称
     time = time.strftime('%Y%m%d', time.localtime(time.time()))
     #str2 = 'G:\github\python\excels' + '\\' + time + name + ".xls"
-    str2='G:\github\python\excels' + '\\' + time +"JD.xls"
+    str2='D:\py_project' + '\\' + time +"JD.xls"
     wb.save(str2)
-    print "-----------"
+    print ("-----------")
     print (u"群成员信息读取成功,保存路径：" + str2)
